@@ -39,6 +39,7 @@ import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.viewers.BreadcrumbViewer;
 
 import org.eclipse.jface.text.ITextSelection;
 
@@ -87,7 +88,6 @@ import org.eclipse.jdt.internal.ui.actions.ActionUtil;
 import org.eclipse.jdt.internal.ui.actions.SelectionConverter;
 import org.eclipse.jdt.internal.ui.filters.EmptyLibraryContainerFilter;
 import org.eclipse.jdt.internal.ui.filters.SyntheticMembersFilter;
-import org.eclipse.jdt.internal.ui.javaeditor.breadcrumb.BreadcrumbViewer;
 import org.eclipse.jdt.internal.ui.javaeditor.breadcrumb.EditorBreadcrumb;
 import org.eclipse.jdt.internal.ui.packageview.ClassPathContainer;
 import org.eclipse.jdt.internal.ui.packageview.LibraryContainer;
