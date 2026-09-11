@@ -29,6 +29,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 
+import org.eclipse.jface.viewers.BreadcrumbViewer;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -39,7 +40,6 @@ import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.jface.viewers.BreadcrumbViewer;
 
 import org.eclipse.jface.text.ITextSelection;
 
@@ -231,6 +231,27 @@ public class JavaEditorBreadcrumb extends EditorBreadcrumb {
 					| JavaElementLabels.ALL_CATEGORY2 | JavaElementLabels.P_COMPRESSED, JavaElementImageProvider.SMALL_ICONS | AppearanceAwareLabelProvider.DEFAULT_IMAGEFLAGS);
 
 			return new DecoratingJavaLabelProvider(result);
+		}
+
+		@Override
+		protected boolean isElementOpenable(Object element) {
+		    if (element instanceof IJavaElement javaElement) {
+		        int elementType = javaElement.getElementType();
+
+		        return elementType != IJavaElement.JAVA_PROJECT
+		                && elementType != IJavaElement.PACKAGE_FRAGMENT
+		                && elementType != IJavaElement.PACKAGE_FRAGMENT_ROOT;
+		    }
+
+		    if (element instanceof IFile) {
+		        return true;
+		    }
+
+		    if (element instanceof IJarEntryResource jarEntryResource) {
+		        return jarEntryResource.isFile();
+		    }
+
+		    return false;
 		}
 	}
 
