@@ -29,6 +29,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.BreadcrumbViewer;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -264,6 +265,14 @@ public class JavaEditorBreadcrumb extends EditorBreadcrumb {
 		@Override
 		protected TreeViewer createDropDownViewer(Composite parent, int style) {
 		    return new ProblemTreeViewer(parent, style);
+		}
+
+		/*
+		 * @see org.eclipse.jface.viewers.BreadcrumbViewer#getDialogSettings()
+		 */
+		@Override
+		protected IDialogSettings getDialogSettings() {
+		    return JavaPlugin.getDefault().getDialogSettings();
 		}
 	}
 
