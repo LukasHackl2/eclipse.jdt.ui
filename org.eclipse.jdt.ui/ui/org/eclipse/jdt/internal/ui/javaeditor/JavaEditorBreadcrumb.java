@@ -96,6 +96,7 @@ import org.eclipse.jdt.internal.ui.util.JavaUIHelp;
 import org.eclipse.jdt.internal.ui.viewsupport.AppearanceAwareLabelProvider;
 import org.eclipse.jdt.internal.ui.viewsupport.DecoratingJavaLabelProvider;
 import org.eclipse.jdt.internal.ui.viewsupport.JavaElementImageProvider;
+import org.eclipse.jdt.internal.ui.viewsupport.ProblemTreeViewer;
 import org.eclipse.jdt.internal.ui.viewsupport.ResourceToItemsMapper;
 
 
@@ -233,6 +234,9 @@ public class JavaEditorBreadcrumb extends EditorBreadcrumb {
 			return new DecoratingJavaLabelProvider(result);
 		}
 
+		/*
+		 * @see org.eclipse.jface.viewers.BreadcrumbViewer#isElementOpenable(java.lang.Object)
+		 */
 		@Override
 		protected boolean isElementOpenable(Object element) {
 		    if (element instanceof IJavaElement javaElement) {
@@ -252,6 +256,14 @@ public class JavaEditorBreadcrumb extends EditorBreadcrumb {
 		    }
 
 		    return false;
+		}
+
+		/*
+		 * @see org.eclipse.jface.viewers.BreadcrumbViewer#createDropDownViewer(org.eclipse.swt.widgets.Composite, int)
+		 */
+		@Override
+		protected TreeViewer createDropDownViewer(Composite parent, int style) {
+		    return new ProblemTreeViewer(parent, style);
 		}
 	}
 
